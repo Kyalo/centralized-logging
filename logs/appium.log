@@ -1,0 +1,40 @@
+[Appium] Welcome to Appium v2.5.4
+[Appium] Non-default server args:
+[Appium] {
+[Appium]   address: '127.0.0.1',
+[Appium]   allowInsecure: [
+[Appium]     'execute_driver_script',
+[Appium]     ...
+[Appium]   ],
+[Appium]   useDrivers: [
+[Appium]     'uiautomator2'
+[Appium]   ]
+[Appium] }
+[Appium] Appium REST http interface listener started at http://127.0.0.1:4723
+[Appium] 
+[HTTP] --> POST /session
+[HTTP] {"capabilities":{"firstMatch":[{"platformName":"Android","appium:deviceName":"emulator-5554","appium:app":"/path/to/myapp.apk"}]}}
+[Appium] New session created successfully
+[Appium] Session ID: a1b2c3d4-e5f6-7890-abcd-ef0123456789
+[UiAutomator2] Starting 'uiautomator2' driver command: createSession(
+[UiAutomator2]   {"capabilities":{"firstMatch":[{"platformName":"Android","appium:deviceName":"emulator-5554","appium:app":"/path/to/myapp.apk"}]}}
+[UiAutomator2] )
+[AndroidDriver] Rerunning adb from command-line
+[adb] 1 device(s) found
+[UiAutomator2] Starting UIAutomator2 server 4.x.x
+[JSONWP Proxy] Proxying [POST /session] to [http://127.0.0.1] with body: {"capabilities": ...}
+[JSONWP Proxy] Got response with status 200: {"sessionId":"...","value":{...}}
+...
+[HTTP] --> POST /session/a1b2c3d4-e5f6-7890-abcd-ef0123456789/element
+[HTTP] {"using":"id","value":"my_element_id"}
+[JSONWP Proxy] Proxying [POST /element] to [http://127.0.0.1/.../element] with body: {"using":"id","value":"my_element_id"}
+[JSONWP Proxy] Got response with status 200: {"status":0,"sessionId":"...","value":{"ELEMENT":"some-element-id"}}
+...
+[HTTP] --> DELETE /session/a1b2c3d4-e5f6-7890-abcd-ef0123456789
+[HTTP] {}
+[Appium] Shutting down session
+[UiAutomator2] Quitting UiAutomator2 session
+[UiAutomator2] Deleting UiAutomator2 server session
+[JSONWP Proxy] Proxying [DELETE /session/...] to [http://127.0.0.1/...] with body: {}
+[JSONWP Proxy] Got response with status 200: {"status":0,"sessionId":"...","value":null}
+[Appium] Received graceful server shutdown request and starting the shutdown process
