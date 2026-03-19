@@ -5,15 +5,18 @@ services:
     container_name: fluent-bit
     command: -c /fluent-bit/etc/fluent-bit.yaml
     volumes:
-      - ./logs:/logs
+      - /tmp/appium-logs:/tmp/appium-logs
       - ./fluent-bit.yaml:/fluent-bit/etc/fluent-bit.yaml
+    depends_on:
+      - loki
+    restart: unless-stopped
 
   loki:
     image: grafana/loki:2.9.0
+    container_name: loki
     ports:
       - "3100:3100"
     volumes:
       - ./loki-config.yaml:/etc/loki/local-config.yaml
     command: -config.file=/etc/loki/local-config.yaml
-    depends_on:
-    - fluent-bit
+    restart: unless-stopped
