@@ -20,9 +20,7 @@ pipeline:
       match: appium
       host: loki
       port: 3100
-      labels:
-        job: appium
-        source: appium
+      labels: job=appium,source=appium
       label_keys:
         - build_id
         - test_run_id
