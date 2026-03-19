@@ -12,6 +12,8 @@ pipeline:
       refresh_interval: 5
       rotate_wait: 30
       db: /var/log/flb_appium_enriched.db
+      ignore_older: 0
+      skip_long_lines: on
 
   outputs:
     - name : stdout
