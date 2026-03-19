@@ -1,0 +1,30 @@
+service:
+  flush: 1
+  log_level: info
+
+pipeline:
+  inputs:
+    - name: tail
+      path: /tmp/appium-logs/*-enriched.log
+      tag: appium
+      refresh_interval: 5
+      rotate_wait: 30
+      db: /var/log/flb_appium_enriched.db
+
+  outputs:
+    - name : stdout
+      match: '*'
+      format: json_lines
+    
+    - name : loki
+      match: appium
+      host: loki
+      port: 3100
+      labels:
+        job: appium
+        source: appium
+      label_keys:
+        - build_id
+        - test_run_id
+        - device_id
+      line_format: json
