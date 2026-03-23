@@ -28,8 +28,20 @@ services:
       timeout: 5s
       retries: 5
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    depends_on:
+      - loki
+    restart: unless-stopped
+
 volumes:
   loki-storage:
+  grafana-storage:
   # loki-data:
   #   driver: local
   #   driver_opts:
