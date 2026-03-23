@@ -3,14 +3,22 @@ auth_enabled: false
 server:
   http_listen_port: 3100
 
+distributor:
+  ring:
+    kvstore:
+      store: inmemory
+      
 ingester:
   wal:
     enabled: true
     dir: /loki/wal
+
   lifecycler:
     ring:
       kvstore:
         store: inmemory
+      replication_factor: 1
+
   chunk_idle_period: 5m
   chunk_retain_period: 30s
 
